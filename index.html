@@ -57,6 +57,7 @@
       display: flex;
       justify-content: center;
       gap: 14px;
+      position: relative;
     }
 
     button {
@@ -65,7 +66,7 @@
       border-radius: 30px;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
     #yesBtn {
@@ -73,13 +74,9 @@
       color: white;
     }
 
-    #yesBtn:hover {
-      transform: scale(1.1);
-    }
-
     #noBtn {
       background: #e0e0e0;
-      position: relative;
+      position: absolute;
     }
 
     /* HEARTS */
@@ -128,7 +125,7 @@
   </div>
 
   <script>
-    // HEART ANIMATION
+    // 💗 HEART ANIMATION
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -137,35 +134,48 @@
       heart.style.animationDuration = (4 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
+      setTimeout(() => heart.remove(), 7000);
     }
-
     setInterval(createHeart, 400);
 
-    // YES BUTTON
+    // 💍 YES BUTTON MESSAGE (YOUR EXACT TEXT)
     document.getElementById("yesBtn").addEventListener("click", () => {
       document.body.innerHTML = `
         <div style="
+          min-height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background:linear-gradient(135deg, #ffd6e8, #ffe9f3);
           text-align:center;
-          padding:40px;
-          font-size:22px;
-          color:#ff4d79;">
-          Yayyyy 😍💖<br><br>
-          I knew it Smit!<br>
-          You just made me the happiest 🥹💍
+          padding:30px;
+          color:#ff4d79;
+          font-size:20px;
+          line-height:1.7;">
+          <div>
+            Thank you for choosing me 🥹✨<br><br>
+            I promise love, care,<br>
+            silly fights & endless laughter 🤍<br><br>
+            Every tomorrow feels perfect with you 💫<br><br>
+            <b>Happy Proposal Day, my Smit 💍❤️</b>
+          </div>
         </div>
       `;
     });
 
-    // NO BUTTON RUNS AWAY 😈
-    document.getElementById("noBtn").addEventListener("mouseover", () => {
-      const btn = document.getElementById("noBtn");
-      btn.style.position = "absolute";
-      btn.style.left = Math.random() * 70 + "vw";
-      btn.style.top = Math.random() * 70 + "vh";
-    });
+    // 😈 NO BUTTON – INSTANT MOVE (WORKS ON MOBILE TAP)
+    const noBtn = document.getElementById("noBtn");
+
+    function moveNoButton() {
+      const x = Math.random() * 70;
+      const y = Math.random() * 60;
+      noBtn.style.left = x + "vw";
+      noBtn.style.top = y + "vh";
+    }
+
+    // Mobile tap + desktop hover
+    noBtn.addEventListener("touchstart", moveNoButton);
+    noBtn.addEventListener("mouseover", moveNoButton);
   </script>
 
 </body>

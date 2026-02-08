@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>For Smit ❤️</title>
-
-  <!-- Mobile support -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -58,6 +56,7 @@
       justify-content: center;
       gap: 14px;
       position: relative;
+      margin-top: 10px;
     }
 
     button {
@@ -66,7 +65,6 @@
       border-radius: 30px;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
     #yesBtn {
@@ -79,7 +77,6 @@
       position: absolute;
     }
 
-    /* HEARTS */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -103,29 +100,31 @@
 
 <body>
 
-  <div class="card">
-    <h1>Smit ❤️</h1>
+  <div class="card" id="card">
+    <h1 id="title">Smit ❤️</h1>
 
-    <p>
-      You walked into my life so quietly,<br>
-      but changed everything so beautifully 🌸
-    </p>
+    <div id="content">
+      <p>
+        You walked into my life so quietly,<br>
+        but changed everything so beautifully 🌸
+      </p>
 
-    <p>
-      With you, even ordinary days feel special,<br>
-      and my heart feels at home 🥹💞
-    </p>
+      <p>
+        With you, even ordinary days feel special,<br>
+        and my heart feels at home 🥹💞
+      </p>
 
-    <h2>Will you be mine forever? 💍</h2>
+      <h2>Will you be mine forever? 💍</h2>
 
-    <div class="buttons">
-      <button id="yesBtn">YES 😍</button>
-      <button id="noBtn">NO 🙈</button>
+      <div class="buttons">
+        <button id="yesBtn">YES 😍</button>
+        <button id="noBtn">NO 🙈</button>
+      </div>
     </div>
   </div>
 
   <script>
-    // 💗 HEART ANIMATION
+    // 💗 HEARTS
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -133,49 +132,31 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (4 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 7000);
     }
     setInterval(createHeart, 400);
 
-    // 💍 YES BUTTON MESSAGE (YOUR EXACT TEXT)
+    // 💍 YES CLICK – CHANGE CONTENT INSIDE BOX
     document.getElementById("yesBtn").addEventListener("click", () => {
-      document.body.innerHTML = `
-        <div style="
-          min-height:100vh;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          background:linear-gradient(135deg, #ffd6e8, #ffe9f3);
-          text-align:center;
-          padding:30px;
-          color:#ff4d79;
-          font-size:20px;
-          line-height:1.7;">
-          <div>
-            Thank you for choosing me 🥹✨<br><br>
-            I promise love, care,<br>
-            silly fights & endless laughter 🤍<br><br>
-            Every tomorrow feels perfect with you 💫<br><br>
-            <b>Happy Proposal Day, my Smit 💍❤️</b>
-          </div>
-        </div>
+      document.getElementById("content").innerHTML = `
+        <p>
+          Thank you for choosing me 🥹✨<br><br>
+          I promise love, care,<br>
+          silly fights & endless laughter 🤍<br><br>
+          Every tomorrow feels perfect with you 💫<br><br>
+          <b>Happy Proposal Day, my Smit 💍❤️</b>
+        </p>
       `;
     });
 
-    // 😈 NO BUTTON – INSTANT MOVE (WORKS ON MOBILE TAP)
+    // 😈 NO BUTTON – INSTANT MOVE (MOBILE + DESKTOP)
     const noBtn = document.getElementById("noBtn");
-
-    function moveNoButton() {
-      const x = Math.random() * 70;
-      const y = Math.random() * 60;
-      noBtn.style.left = x + "vw";
-      noBtn.style.top = y + "vh";
+    function moveNo() {
+      noBtn.style.left = Math.random() * 70 + "vw";
+      noBtn.style.top = Math.random() * 60 + "vh";
     }
-
-    // Mobile tap + desktop hover
-    noBtn.addEventListener("touchstart", moveNoButton);
-    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNo);
+    noBtn.addEventListener("mouseover", moveNo);
   </script>
 
 </body>

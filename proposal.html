@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Smit ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef, #fbc2eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.heart {
+    position: absolute;
+    color: rgba(255, 77, 109, 0.9); /* FIX */
+    font-size: 22px;               /* FIX */
+    animation: float 6s linear infinite;
+}
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-900px); opacity: 0; }
+}
+
+/* SPARKLES */
+.glow {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 3s infinite;
+    opacity: 0.8;
+}
+@keyframes sparkle {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* CARD */
+.card, .result {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 36px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    max-width: 360px;
+    animation: pop 0.8s ease;
+}
+.result { display: none; }
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+h1, h2 {
+    background: linear-gradient(45deg, #ff4d6d, #ff9a9e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* BUTTONS */
+.btns {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 17px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yes {
+    background: linear-gradient(45deg, #ff4d6d, #ff758c);
+    color: white;
+}
+#yes:hover { transform: scale(1.1); }
+
+#no {
+    background: #eee;
+}
+
+/* MUSIC */
+.music {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: white;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 2;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+<div class="music" onclick="toggleMusic()">🎶</div>
+
+<!-- HEARTS -->
+<div class="hearts" id="hearts"></div>
+
+<!-- CARD -->
+<div class="card" id="card">
+    <h1>Smit ❤️</h1>
+    <p>
+        You walked into my life so quietly,<br>
+        but changed everything so beautifully 🌸<br><br>
+        With you, even ordinary days feel special,<br>
+        and my heart feels at home 🥹💕<br><br>
+        So today, with all my love…
+    </p>
+
+    <h2>Will you be mine forever? 💍</h2>
+
+    <div class="btns">
+        <button id="yes" onclick="yesClick()">YES 😍</button>
+        <button id="no" onmouseover="moveNo()">NO 🙈</button>
+    </div>
+</div>
+
+<!-- RESULT -->
+<div class="result" id="result">
+    <h1>Forever Begins Here 💖</h1>
+    <p>
+        Thank you for choosing me 🥹✨<br><br>
+        I promise love, care,<br>
+        silly fights & endless laughter 🤍<br><br>
+        Every tomorrow feels perfect with you 💫<br><br>
+        <b>Happy Proposal Day, my Smit 💍❤️</b><br><br>
+        — Yours, <b>Priya 💕</b>
+    </p>
+</div>
+
+<script>
+function yesClick() {
+    document.getElementById("card").style.display = "none";
+    document.getElementById("result").style.display = "block";
+    confetti();
+}
+
+// NO button move
+function moveNo() {
+    const no = document.getElementById("no");
+    const x = (Math.random() * 120) - 60;
+    const y = (Math.random() * 80) - 40;
+    no.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// CREATE HEARTS (FIXED)
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.bottom = "-30px";
+    document.getElementById("hearts").appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 250);
+
+// SPARKLES
+setInterval(() => {
+    const s = document.createElement("div");
+    s.className = "glow";
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.top = Math.random() * window.innerHeight + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 3000);
+}, 500);
+
+// MUSIC
+function toggleMusic() {
+    const m = document.getElementById("music");
+    m.paused ? m.play() : m.pause();
+}
+
+// CONFETTI
+function confetti() {
+    for (let i = 0; i < 30; i++) {
+        const c = document.createElement("div");
+        c.textContent = "🎉";
+        c.style.position = "fixed";
+        c.style.left = Math.random() * window.innerWidth + "px";
+        c.style.top = "-20px";
+        c.style.fontSize = "24px";
+        c.style.animation = "float 3s linear";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>

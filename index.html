@@ -1,177 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For Smit ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>For Smit ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ffd6e8, #ffe9f3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+body{
+  margin:0;
+  height:100vh;
+  background:#ffe1ec;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
 
-    .card {
-      background: white;
-      width: 90%;
-      max-width: 360px;
-      padding: 24px 20px;
-      border-radius: 22px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(255, 105, 135, 0.25);
-      z-index: 2;
-    }
+.card{
+  background:#fff;
+  width:90%;
+  max-width:360px;
+  padding:26px 20px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(255,105,135,.25);
+  z-index:2;
+}
 
-    h1 {
-      color: #ff5c8a;
-      font-size: 26px;
-      margin-bottom: 12px;
-    }
+h1{
+  color:#ff5c8a;
+  margin-bottom:12px;
+}
 
-    p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #555;
-      margin-bottom: 14px;
-    }
+p{
+  color:#555;
+  font-size:15px;
+  line-height:1.6;
+}
 
-    h2 {
-      color: #ff4d79;
-      font-size: 18px;
-      margin-bottom: 18px;
-    }
+h2{
+  color:#ff4d79;
+  margin:18px 0;
+  font-size:18px;
+}
 
-    /* BUTTON AREA */
-    .buttons {
-      position: relative;
-      height: 60px; /* space to move NO */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-    }
+/* BUTTON AREA */
+.buttons{
+  position:relative;
+  height:70px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+}
 
-    button {
-      border: none;
-      padding: 12px 22px;
-      border-radius: 30px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
+/* COMMON BUTTON */
+button{
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    #yesBtn {
-      background: #ff5c8a;
-      color: white;
-      z-index: 2;
-    }
+/* YES */
+#yesBtn{
+  background:#ff5c8a;
+  color:white;
+}
 
-    #noBtn {
-      background: #e0e0e0;
-      position: relative; /* IMPORTANT: not absolute initially */
-      z-index: 1;
-    }
+/* NO – starts NORMAL */
+#noBtn{
+  background:#e0e0e0;
+  color:#333;
+  position:relative;
+}
 
-    /* HEARTS */
-    .heart {
-      position: fixed;
-      bottom: -20px;
-      font-size: 18px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.7;
-    }
+/* HEARTS */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  animation:float 6s linear infinite;
+  opacity:.7;
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-      }
-    }
-  </style>
+@keyframes float{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Smit ❤️</h1>
+<div class="card">
+  <h1>Smit 💖</h1>
 
-    <div id="content">
-      <p>
-        You walked into my life so quietly,<br>
-        but changed everything so beautifully 🌸
-      </p>
+  <div id="content">
+    <p>
+      You walked into my life so quietly,<br>
+      but changed everything so beautifully 🌸
+    </p>
 
-      <p>
-        With you, even ordinary days feel special,<br>
-        and my heart feels at home 🥹💞
-      </p>
+    <p>
+      With you, even ordinary days feel special,<br>
+      and my heart feels at home 🥹💞
+    </p>
 
-      <h2>Will you be mine forever? 💍</h2>
+    <h2>Will you be mine forever? 💍</h2>
 
-      <div class="buttons">
-        <button id="yesBtn">YES 😍</button>
-        <button id="noBtn">NO 🙈</button>
-      </div>
+    <div class="buttons">
+      <button id="yesBtn">YES 😍</button>
+      <button id="noBtn">NO 🙈</button>
     </div>
   </div>
+</div>
 
-  <script>
-    /* 💗 HEART ANIMATION */
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "💗";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
-    setInterval(createHeart, 400);
+<script>
+/* HEARTS */
+function heart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=4+Math.random()*3+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(heart,400);
 
-    /* 💍 YES BUTTON */
-    document.getElementById("yesBtn").addEventListener("click", () => {
-      document.getElementById("content").innerHTML = `
-        <p>
-          Thank you for choosing me 🥹✨<br><br>
-          I promise love, care,<br>
-          silly fights & endless laughter 🤍<br><br>
-          Every tomorrow feels perfect with you 💫<br><br>
-          <b>Happy Proposal Day, my Smit 💍❤️</b>
-        </p>
-      `;
-    });
+/* YES CLICK */
+document.getElementById("yesBtn").onclick=()=>{
+  document.getElementById("content").innerHTML=`
+    <p>
+      Thank you for choosing me 🥹✨<br><br>
+      I promise love, care,<br>
+      silly fights & endless laughter 🤍<br><br>
+      Every tomorrow feels perfect with you 💫<br><br>
+      <b>Happy Proposal Day, my Smit 💍❤️</b>
+    </p>
+  `;
+};
 
-    /* 😈 NO BUTTON – MOVE WITHOUT OVERLAP */
-    const noBtn = document.getElementById("noBtn");
+/* NO MOVE (ONLY AFTER INTERACTION) */
+const noBtn=document.getElementById("noBtn");
+const area=document.querySelector(".buttons");
 
-    function moveNoButton() {
-      const btnArea = document.querySelector(".buttons");
-      const maxX = btnArea.offsetWidth - noBtn.offsetWidth;
-      const maxY = btnArea.offsetHeight - noBtn.offsetHeight;
+function moveNo(){
+  noBtn.style.position="absolute";
+  const x=Math.random()*(area.offsetWidth-noBtn.offsetWidth);
+  const y=Math.random()*(area.offsetHeight-noBtn.offsetHeight);
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+}
 
-      noBtn.style.position = "absolute";
-      noBtn.style.left = Math.random() * maxX + "px";
-      noBtn.style.top = Math.random() * maxY + "px";
-    }
-
-    // Mobile + desktop
-    noBtn.addEventListener("touchstart", moveNoButton);
-    noBtn.addEventListener("mouseover", moveNoButton);
-  </script>
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+</script>
 
 </body>
 </html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chocolate Day for Smit 🍫</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:100vh;
+  background:linear-gradient(160deg,#2c1b18,#6d4c41,#f8bbd0);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* container */
+.wrapper{
+  text-align:center;
+  padding:20px;
+  width:100%;
+}
+
+/* chocolate icon */
+.choco-box{
+  font-size:90px;
+  cursor:pointer;
+  animation:pulse 2s infinite;
+  transition:.3s;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+.tap{
+  color:#fff;
+  font-size:17px;
+  margin-top:14px;
+  opacity:.9;
+}
+
+/* glass card */
+.card{
+  display:none;
+  margin:25px auto 0;
+  max-width:360px;
+  padding:28px 26px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 25px 50px rgba(0,0,0,.35);
+  animation:rise .7s ease;
+  color:#fff;
+}
+
+@keyframes rise{
+  from{transform:translateY(40px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+
+.card h2{
+  font-size:22px;
+  margin-bottom:12px;
+  color:#fff;
+}
+
+.card p{
+  font-size:15px;
+  line-height:1.7;
+  color:#fce4ec;
+}
+
+/* floating items */
+.float{
+  position:absolute;
+  bottom:-30px;
+  font-size:22px;
+  animation:floatUp 7s linear infinite;
+  opacity:.9;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-120vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="choco-box" onclick="openSurprise()">🍫</div>
+  <div class="tap">Tap the chocolate, my Smit 🤎</div>
+
+  <div class="card" id="card">
+    <h2>Happy Chocolate Day 🍫</h2>
+    <p>
+      Just like chocolate,<br>
+      you make my world sweeter 🥹🤍<br><br>
+
+      Every smile of yours<br>
+      melts my heart slowly & softly 💕<br><br>
+
+      I don’t need any more sweetness,<br>
+      because <b>you are enough</b> 😌🍫
+    </p>
+    <br>
+    <b>Always yours 💝</b>
+  </div>
+</div>
+
+<script>
+function openSurprise(){
+  document.querySelector(".choco-box").innerHTML="💝";
+  document.querySelector(".tap").style.display="none";
+  document.getElementById("card").style.display="block";
+
+  setInterval(()=>{
+    const f=document.createElement("div");
+    f.className="float";
+    f.innerHTML=Math.random()>0.5?"🍫":"🤍";
+    f.style.left=Math.random()*100+"vw";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),7000);
+  },350);
+}
+</script>
+
+</body>
+</html>

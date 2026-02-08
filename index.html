@@ -48,15 +48,17 @@
     h2 {
       color: #ff4d79;
       font-size: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
+    /* BUTTON AREA */
     .buttons {
+      position: relative;
+      height: 60px; /* space to move NO */
       display: flex;
       justify-content: center;
-      gap: 14px;
-      position: relative;
-      margin-top: 10px;
+      align-items: center;
+      gap: 16px;
     }
 
     button {
@@ -65,18 +67,22 @@
       border-radius: 30px;
       font-size: 15px;
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
     #yesBtn {
       background: #ff5c8a;
       color: white;
+      z-index: 2;
     }
 
     #noBtn {
       background: #e0e0e0;
-      position: absolute;
+      position: relative; /* IMPORTANT: not absolute initially */
+      z-index: 1;
     }
 
+    /* HEARTS */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -100,8 +106,8 @@
 
 <body>
 
-  <div class="card" id="card">
-    <h1 id="title">Smit ❤️</h1>
+  <div class="card">
+    <h1>Smit ❤️</h1>
 
     <div id="content">
       <p>
@@ -124,7 +130,7 @@
   </div>
 
   <script>
-    // 💗 HEARTS
+    /* 💗 HEART ANIMATION */
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -136,7 +142,7 @@
     }
     setInterval(createHeart, 400);
 
-    // 💍 YES CLICK – CHANGE CONTENT INSIDE BOX
+    /* 💍 YES BUTTON */
     document.getElementById("yesBtn").addEventListener("click", () => {
       document.getElementById("content").innerHTML = `
         <p>
@@ -149,14 +155,22 @@
       `;
     });
 
-    // 😈 NO BUTTON – INSTANT MOVE (MOBILE + DESKTOP)
+    /* 😈 NO BUTTON – MOVE WITHOUT OVERLAP */
     const noBtn = document.getElementById("noBtn");
-    function moveNo() {
-      noBtn.style.left = Math.random() * 70 + "vw";
-      noBtn.style.top = Math.random() * 60 + "vh";
+
+    function moveNoButton() {
+      const btnArea = document.querySelector(".buttons");
+      const maxX = btnArea.offsetWidth - noBtn.offsetWidth;
+      const maxY = btnArea.offsetHeight - noBtn.offsetHeight;
+
+      noBtn.style.position = "absolute";
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
     }
-    noBtn.addEventListener("touchstart", moveNo);
-    noBtn.addEventListener("mouseover", moveNo);
+
+    // Mobile + desktop
+    noBtn.addEventListener("touchstart", moveNoButton);
+    noBtn.addEventListener("mouseover", moveNoButton);
   </script>
 
 </body>

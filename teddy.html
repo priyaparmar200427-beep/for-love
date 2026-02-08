@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Just for You 🤍</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap');
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  height:100vh;
+  background: radial-gradient(circle at top, #ffe6eb, #b76e79);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Poppins', sans-serif;
+  overflow:hidden;
+  color:#4a1c2d;
+}
+
+/* 🌸 floating glow */
+.glow{
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(255,255,255,0.25);
+  filter:blur(90px);
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+@keyframes float{
+  from{ transform:translateY(-40px);}
+  to{ transform:translateY(40px);}
+}
+
+/* 🧸 floating teddy silhouettes */
+.teddy{
+  position:absolute;
+  font-size:40px;
+  opacity:0.15;
+  animation: teddyFloat linear infinite;
+}
+
+@keyframes teddyFloat{
+  from{ transform:translateY(110vh) scale(0.8);}
+  to{ transform:translateY(-20vh) scale(1.2);}
+}
+
+/* 🤍 heart particles */
+.heart{
+  position:absolute;
+  font-size:18px;
+  opacity:0.2;
+  animation: heartFloat 6s ease-in infinite;
+}
+
+@keyframes heartFloat{
+  from{ transform:translateY(100vh) scale(0.6);}
+  to{ transform:translateY(-10vh) scale(1);}
+}
+
+.container{
+  text-align:center;
+  padding:24px;
+  max-width:360px;
+  width:100%;
+  z-index:5;
+}
+
+.wait-text{
+  font-size:18px;
+  opacity:0;
+  animation: fadeIn 2s forwards;
+}
+
+.timer{
+  font-size:42px;
+  margin-top:14px;
+  font-weight:600;
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:0.5;}
+  50%{opacity:1;}
+  100%{opacity:0.5;}
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+.letter-box{
+  display:none;
+  background:white;
+  border-radius:20px;
+  padding:26px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+  animation: slideUp 1.5s ease forwards;
+}
+
+@keyframes slideUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.letter{
+  font-family:'Playfair Display', serif;
+  font-size:17px;
+  line-height:1.7;
+  text-align:left;
+  white-space:pre-wrap;
+}
+
+.signature{
+  margin-top:20px;
+  text-align:right;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<!-- floating teddies -->
+<div class="teddy" style="left:10%; animation-duration:18s;">🧸</div>
+<div class="teddy" style="left:70%; animation-duration:22s;">🧸</div>
+<div class="teddy" style="left:40%; animation-duration:20s;">🧸</div>
+
+<!-- floating hearts -->
+<div class="heart" style="left:20%; animation-duration:6s;">🤍</div>
+<div class="heart" style="left:60%; animation-duration:7s;">🤍</div>
+<div class="heart" style="left:80%; animation-duration:5s;">🤍</div>
+
+<div class="container" id="loading">
+  <div class="wait-text">This letter opens only when you're ready 🤍</div>
+  <div class="timer" id="count">10</div>
+</div>
+
+<div class="container letter-box" id="letterBox">
+  <div class="letter" id="text"></div>
+  <div class="signature">— Always yours 💞</div>
+</div>
+
+<script>
+let count = 10;
+const counter = document.getElementById("count");
+const loading = document.getElementById("loading");
+const letterBox = document.getElementById("letterBox");
+
+const message = `Smit,
+
+This isn’t a teddy you can hold…
+but it carries the same warmth 🤍
+
+On days when you feel tired,
+or the world feels heavy,
+I hope you remember —
+
+you are my comfort too.
+
+Quietly.
+Softly.
+Always.
+
+Happy Teddy Day 🧸`;
+
+const interval = setInterval(()=>{
+  count--;
+  counter.innerText = count;
+  if(count === 0){
+    clearInterval(interval);
+    loading.style.display = "none";
+    letterBox.style.display = "block";
+    typeText();
+  }
+},1000);
+
+let i = 0;
+function typeText(){
+  if(i < message.length){
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeText, 45);
+  }
+}
+</script>
+
+</body>
+</html>
